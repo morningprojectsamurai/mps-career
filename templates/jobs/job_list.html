@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load job_summary %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>MPS Career お仕事リスト</h1>
+
+            {% for job in object_list %}
+            <table class="table job">
+                <tr>
+                    <th>タイトル</th>
+                    <td>{{ job.title }}</td>
+                </tr>
+                <tr>
+                    <th>期間</th>
+                    <td>{{ job.start|date }} - {{ job.end|date }}</td>
+                </tr>
+                <tr>
+                    <th>報酬</th>
+                    <td>{{ job.remuneration|floatformat:"0" }} 円</td>
+                </tr>
+                <tr>
+                    <th>募集人数</th>
+                    <td>{{ job.num_employee }} 人</td>
+                </tr>
+                <tr>
+                    <th>タグ</th>
+                    <td>
+                        {% for tag in job.tags.all %}
+                            {% if not forloop.last %}
+                                {{ tag }}, 
+                            {% else %}
+                                {{ tag }}
+                            {% endif %}
+                        {% endfor%}
+                    </td>
+                </tr>
+                <tr>
+                    <th>概要</th>
+                    <td>{{ job.summary|html|safe }}</td>
+                </tr>
+            </table>
+            {% if not user.is_authenticated %}
+            <a class="btn btn-primary btn-lg btn-block" href="{% url 'social:begin' 'github' %}">GitHub でログイン</a>
+            {% elif job not in entried %}
+            <form action="{% url 'jobs:entry_create' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="job" value="{{ job.pk }}">
+                <input type="hidden" name="user" value="{{ user.pk }}">
+                <input type="submit" class="btn btn-success btn-lg btn-block" value="応募する">
+            </form>
+            {% else %}
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="応募済み" disabled>          
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

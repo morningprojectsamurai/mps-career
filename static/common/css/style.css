@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+table.job{
+    margin-top: 30px;
+    table-layout: fixed;
+}
+
+table.job th {
+    width: 100px;
+}

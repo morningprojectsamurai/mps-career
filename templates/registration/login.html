@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}MPS JOBS{% endblock %}
+    
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>MPS Career (仮)</h1>
+        <p>MPS Career (仮) は、MPS のプロジェクトや講座で得た知識や技術を、
+            さらなるキャリア形成のために
+            「実際に報酬の発生する仕事で実践する場」として
+            MPS の運用に必要なシステム構築の一部または全部をお仕事として依頼する場です。</p>
+        {% if not user.is_authenticated %}
+        <p><img class="login_with_github" src="{% static "common/img/Octocat.png" %}" alt="Login with github" width=100/>
+            <a class="btn btn-primary btn-lg" href="{% url 'social:begin' 'github' %}">GitHub でログイン</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="container">
+<!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Light weight projects</h2>
+            <p>MPS Career ではシステム構築を忙しい生活の中でも頑張ればこなせる程度の粒度のコンポーネントに分解し、
+                お仕事としてご依頼します。お仕事を請け負う方のレベルによりかかる日数は異なりますが、多くの場合、
+                プロが行った場合には、1、2日で終わる分量の仕事になっています。</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Remote works</h2>
+            <p>お仕事は基本リモートで結構です。また、MPS Atelier がオープンしており、イベントが開催されない時間には、
+                仕事場として MPS Atelier お使いいただけます。</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Open to public</h2>
+            <p>ほとんどのお仕事は、オープンソースで Github 上に公開されます。
+                GitHub での push &amp; pull 履歴はご自身のチーム開発の実績として存分にお使いください。
+            </p>
+        </div>
+    </div>
+
+    <hr>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <h2>How it works</h2>
+            <ol>
+                <li><a href="//github.com">GitHub</a> にアカウントを作成 (すでにお持ちの方は不要です)</li>
+                <li>MPS Career に <a href="{% url 'social:begin' 'github' %}">GitHub アカウントでログイン</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">お仕事を検索</a></li>
+                <li>気に入ったお仕事にエントリー</li>
+                <li>必要に応じて MPS Atelier にて面談</li>
+                <li>お互いに条件が合えばお仕事決定!</li>
+                <li>開発 &amp; 定期ミーティング</li>
+                <li>納品</li>
+                <li>品質チェック</li>
+                <li>品質チェック通過</li>
+                <li>報酬受け取り</li>
+            </ol>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Plicy of MPS Career</h2>
+            <p>MPS Career は MPS や自主学習で得た知識や技術を「報酬の発生する仕事で実践する」ことによって、さらなるキャリアアップを目指すための場です。</p>
+            <p>下記ポリシーはその精神に則って設定されるものです。</p>
+
+            <h3>採用基準</h3>
+
+            <p>MPS Career は MPS や自主学習で得た知識や技術を「お金の発生する仕事で実践する」ことによって、さらなるキャリアアップを目指すための場です。
+                そのため、エントリー時の技術的能力よりも、新しい知識や技術を習得しようとする気持ちと、それを完遂できる能力を重視します。</p>
+
+            <p>どのような知識や技術 (たとえばフレームワークやライブラリ) を用いて仕事をしたいか、ということについては柔軟に対応します。
+                「すでに仕事で使っている慣れた技術」も結構ですが「これから仕事などで使ってみたい技術」を積極的に申し出て練習していただけると嬉しいです。
+            </p>                    
+
+            <h3>品質基準</h3>
+            <p>プログラム開発の仕事をする上で金子が重要視するのは、自分の作ったコードの構造をきちんと論理的に説明できる、ということです。
+                この点をクリアできないものについてはまず報酬は支払われません (「え、でも動くじゃん」は認められません)。
+                この能力は技術者として生きていくのには必須だと考えていますので、クリアできるまで何度でも指摘はします。
+                いい練習の場だと思っていただけると幸いですし、その程度のガッツのある人を募集します。</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>MPS について</h2>
+            <p>MPSは、「誰でもリーダーになることができる、社会に役立つIoTやソフトウェアの開発」を中心としたプロジェクトの運営を通して、
+                実践的な知識と技術の獲得だけでなく、高いリーダーシップ、メンバーシップを有した世の中を牽引する人材の育成を行います。
+                また、多くのプロジェクトをみんなで楽しみながら遂行し、見える実績と強固な人脈を作ることにより、メンバーのキャリアチェンジやキャリアアップの礎を築きます。</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2017 Morning Project Samurai</p>
+    </footer>
+</div>
+{% endblock %}
