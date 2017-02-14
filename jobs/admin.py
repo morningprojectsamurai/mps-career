@@ -7,16 +7,21 @@ class TagAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.Job)
-class JobAdmin(admin.ModelAdmin):
+@admin.register(models.Link)
+class LinkAdmin(admin.ModelAdmin):
     pass
 
+
+class LinkInline(admin.TabularInline):
+    model = models.Link
+
+
+@admin.register(models.Job)
+class JobAdmin(admin.ModelAdmin):
+    inlines = [LinkInline, ]
+    
 
 @admin.register(models.Entry)
 class EntryAdmin(admin.ModelAdmin):
     pass
 
-
-@admin.register(models.Link)
-class LinkAdmin(admin.ModelAdmin):
-    pass
