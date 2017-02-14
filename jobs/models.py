@@ -42,6 +42,7 @@ class Entry(models.Model):
     job = models.ForeignKey(Job, related_name='entries')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    is_accepted = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
