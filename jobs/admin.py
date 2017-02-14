@@ -15,3 +15,8 @@ class JobAdmin(admin.ModelAdmin):
 @admin.register(models.Entry)
 class EntryAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.Link)
+class LinkAdmin(admin.ModelAdmin):
+    pass

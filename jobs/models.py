@@ -14,8 +14,8 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-    
 
+    
 class Job(models.Model):
     title = models.CharField(max_length=128)
     summary = models.TextField()
@@ -35,15 +35,29 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Link(models.Model):
+    job = models.ForeignKey(Job, related_name='links')
+    title = models.CharField(max_length=128)
+    url = models.URLField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
     
 
 class Entry(models.Model):
-    user = models.ForeignKey(User, related_name='users')
+    user = models.ForeignKey(User, related_name='entries')
     job = models.ForeignKey(Job, related_name='entries')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    completed = models.DateTimeField(null=True, blank=True)
     is_accepted = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return '%s (%s)' % (self.job.title, self.user.username)
