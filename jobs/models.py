@@ -46,6 +46,17 @@ class Link(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Picture(models.Model):
+    job = models.ForeignKey(Job, related_name='pictures')
+    picture = models.ImageField(upload_to='uploads/jobs/pics/')
+    title = models.CharField(max_length=128)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
     
 
 class Entry(models.Model):

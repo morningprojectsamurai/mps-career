@@ -16,9 +16,18 @@ class LinkInline(admin.TabularInline):
     model = models.Link
 
 
+@admin.register(models.Picture)
+class PictureAdmin(admin.ModelAdmin):
+    pass
+
+
+class PictureInline(admin.TabularInline):
+    model = models.Picture
+
+
 @admin.register(models.Job)
 class JobAdmin(admin.ModelAdmin):
-    inlines = [LinkInline, ]
+    inlines = [LinkInline, PictureInline]
     
 
 @admin.register(models.Entry)

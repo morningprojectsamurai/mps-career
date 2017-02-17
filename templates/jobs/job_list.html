@@ -38,6 +38,32 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>関連画像</th>
+                    <td>
+                        <div class="row">
+                            {% for picture in job.pictures.all %}
+                            <div class="col-xs-6 col-md-3">
+                                <a href="{{ picture.picture.url }}" class="thumbnail">
+                                    <img src="{{ picture.picture.url }}">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>関連リンク</th>
+                    <td>
+                        {% for link in job.links.all %}
+                            {% if not forloop.last %}
+                                {{ link.title }}, 
+                            {% else %}
+                            <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
                     <th>概要</th>
                     <td>{{ job.summary|html|safe }}</td>
                 </tr>
